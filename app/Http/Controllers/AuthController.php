@@ -42,7 +42,7 @@ class AuthController extends Controller {
 
     public function changePassword(Request $request) {
         $validatedData = $request->validate([
-            'current_password' => 'required',
+            'current_password' => 'required|current_password',
             'password' => 'required|min:8|max:16|confirmed',
             'password_confirmation' => 'required|same:password',
         ]);
