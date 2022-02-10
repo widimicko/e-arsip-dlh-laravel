@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Field;
 use App\Models\Archive;
 use App\Models\Category;
+use Illuminate\Contracts\Cache\Store;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -151,8 +152,7 @@ class ArchiveController extends Controller
     public function download(Archive $archive)
     {
         if ($archive->document) {
-            $extension = pathinfo($archive->document, PATHINFO_EXTENSION);
-            return response()->download(public_path('storage/'.$archive->document), $archive->title.'.'.$extension);
+            return Storage::download($archive->document);
         } else {
             return response()->json(['message'=> 'Dokumen arsip tidak ditemukan']);
         }
