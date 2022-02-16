@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Field;
 use App\Models\Archive;
 use App\Models\Category;
-use App\Models\Field;
-use Illuminate\Http\Request;
+use App\Http\Requests\CategoryRequest;
 
 class CategoryController extends Controller {
     public function index() {
@@ -15,26 +15,18 @@ class CategoryController extends Controller {
         ]);
     }
 
-    public function store(Request $request) {
-        $validatedData = $request->validate([
-            'name' => 'required|unique:categories|min:5|max:255'
-        ]);
-
-        Category::create($validatedData);
+    public function store(CategoryRequest $request) {
+        Category::create($request->all());
         return redirect('/dashboard/categories')->with('success', "Kategori berhasil ditambahkan");
     }
 
-    public function update(Request $request, Category $category) {
-        $validatedData = $request->validate([
-            'name' => 'required|unique:categories|min:5|max:255',
-        ]);
-
-        Category::where('id', $category->id)->update($validatedData);
+    public function update(CategoryRequest $request, Category $category) {
+        Category::where('id', $category->id)->update(['name' => $request->name]);
         return redirect('/dashboard/categories')->with('success', 'Kategori berhasil diubah');
     }
 
     public function destroy(Category $category) {
-        $archives = Archive::where('category_id', $category->id)->get();
+        $archives = Archive::where('category_id', $category->id)->get()->first();
 
         if ($archives) {
             return redirect('/dashboard/categories')->with('failed', 'Gagal, ada arsip yang memiliki kategori '. $category->name);

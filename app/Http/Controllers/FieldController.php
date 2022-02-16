@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Field;
 use App\Models\Archive;
-use App\Models\User;
-use Illuminate\Http\Request;
+use App\Http\Requests\FieldRequest;
 
 class FieldController extends Controller {
 
@@ -13,37 +13,29 @@ class FieldController extends Controller {
         return view('fields.fields', ['fields' => Field::all()]);
     }
 
-    public function store(Request $request) {
-        $validatedData = $request->validate([
-            'name' => 'required|unique:fields|min:5|max:255'
-        ]);
-
-        Field::create($validatedData);
+    public function store(FieldRequest $request) {
+        Field::create($request->all());
         return redirect('/dashboard/fields')->with('success', "Bidang berhasil ditambahkan");
     }
 
-    public function update(Request $request, Field $field) {
-        $validatedData = $request->validate([
-            'name' => 'required|unique:fields|min:5|max:255',
-        ]);
-
-        Field::where('id', $field->id)->update($validatedData);
+    public function update(FieldRequest $request, Field $field) {
+        Field::where('id', $field->id)->update(['name' => $request->name]);
 
         User::where('role', $field->name)->update([
-            'role' => $validatedData['name']
+            'role' => $request->name
         ]);
 
         return redirect('/dashboard/fields')->with('success', 'Bidang berhasil diubah');
     }
 
     public function destroy(Field $field) {
-        $archives = Archive::where('category_id', $field->id)->get();
+        $archives = Archive::where('category_id', $field->id)->get()->first();
 
         if ($archives) {
             return redirect('/dashboard/fields')->with('failed', 'Gagal, ada arsip yang memiliki bidang '. $field->name);
         }
 
-        Category::destroy($field->id);
+        Field::destroy($field->id);
         return redirect('/dashboard/fields')->with('success', 'Bidang berhasil dihapus');
     }
 }
