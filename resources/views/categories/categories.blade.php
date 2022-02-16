@@ -44,7 +44,7 @@
             <td>{{ date('jS M Y', $category->created_at->timestamp) }}</td>
             <td>{{ $category->updated_at->diffForHumans() }}</td>
             <td>
-              <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editModal" data-bs-id="{{ $category->id }}" data-bs-name="{{ $category->name }}"><i class="bi bi-pencil"></i> Ubah</button>
+              <button type="button" class="btn btn-warning text-white" data-bs-toggle="modal" data-bs-target="#editModal" data-bs-id="{{ $category->id }}" data-bs-name="{{ $category->name }}"><i class="bi bi-pencil"></i> Ubah</button>
               <form action="/dashboard/categories/{{ $category->id }}" method="POST" class="d-inline">
                 @method('delete') @csrf
                 <button class="btn btn-danger border-0" onclick="return confirm('Apakah anda yakin menghapus data?')"><i class="bi bi-trash"></i> Hapus</button>

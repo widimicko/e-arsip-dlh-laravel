@@ -44,7 +44,7 @@
             <td>{{ date('jS M Y', $field->created_at->timestamp) }}</td>
             <td>{{ $field->updated_at->diffForHumans() }}</td>
             <td>
-              <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editModal" data-bs-id="{{ $field->id }}" data-bs-name="{{ $field->name }}"><i class="bi bi-pencil"></i> Ubah</button>
+              <button type="button" class="btn btn-warning text-white" data-bs-toggle="modal" data-bs-target="#editModal" data-bs-id="{{ $field->id }}" data-bs-name="{{ $field->name }}"><i class="bi bi-pencil"></i> Ubah</button>
               <form action="/dashboard/fields/{{ $field->id }}" method="POST" class="d-inline">
                 @method('delete') @csrf
                 <button class="btn btn-danger border-0" onclick="return confirm('Apakah anda yakin menghapus data?')"><i class="bi bi-trash"></i> Hapus</button>

@@ -37,10 +37,10 @@
             <td>{{ $archive->title }}</td>
             <td>{{ $archive->category }}</td>
             <td>{{ $archive->field }}</td>
-            <td> {{ date($archive->created_at) }}</td>
+            <td> {{ date($archive->created_at) }} ({{  \Carbon\Carbon::parse($archive->updated_at)->diffForHumans() }})</td>
             <td>
-              <a href="/dashboard/archives/{{ $archive->id }}" class="btn btn-info"><i class="bi bi-eye"></i> Lihat</a>
-              <a href="/dashboard/archives/{{ $archive->id }}/edit" class="btn btn-warning"><i class="bi bi-pencil"></i> Ubah</a>
+              <a href="/dashboard/archives/{{ $archive->id }}" class="btn btn-info text-white"><i class="bi bi-eye"></i> Lihat</a>
+              <a href="/dashboard/archives/{{ $archive->id }}/edit" class="btn btn-warning text-white"><i class="bi bi-pencil"></i> Ubah</a>
               <form action="/dashboard/archives/{{ $archive->id }}" method="POST" class="d-inline">
                 @method('delete') @csrf
                 <button class="btn btn-danger border-0" onclick="return confirm('Apakah anda yakin menghapus data?')"><i class="bi bi-trash"></i> Hapus</button>
