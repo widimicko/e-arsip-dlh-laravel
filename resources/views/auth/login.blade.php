@@ -64,7 +64,7 @@
                 @enderror
               </div>
               <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" value="1">
+                <input name="remember" type="checkbox" class="form-check-input" value="1">
                 <label class="form-check-label">Ingat Saya</label>
               </div>
               <button class="mb-2 w-100 btn btn-lg bg-primary" type="submit"><i class="bi bi-box-arrow-in-right"></i> Masuk</button>

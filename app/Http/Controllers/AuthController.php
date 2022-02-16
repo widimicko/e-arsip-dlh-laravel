@@ -20,7 +20,7 @@ class AuthController extends Controller {
             'password' => 'required'
         ]);
 
-        if (Auth::attempt($credentials, $request->get('remember'))) {
+        if (Auth::attempt($credentials, 1)) {
             $request->session()->regenerate();
             return redirect()->intended('/');
         }
