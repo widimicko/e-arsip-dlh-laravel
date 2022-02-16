@@ -1,5 +1,5 @@
 @push('addon-head')
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.11.4/datatables.min.css"/>
+  <link rel="stylesheet" type="text/css" href="{{ asset('library/dataTable/datatables.min.css') }}"/>
 @endpush
 
 @extends('layout.main')
@@ -105,7 +105,7 @@
 
 
 @push('addon-script')
-  <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.4/datatables.min.js"></script>
+  <script type="text/javascript" src="{{ asset('library/dataTable/datatables.min.js') }}"></script>
   <script src="/script/dataTable.js"></script>
   <script>
     const editModal = document.getElementById('editModal')

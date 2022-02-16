@@ -1,5 +1,5 @@
 @push('addon-head')
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.11.4/datatables.min.css"/>
+  <link rel="stylesheet" type="text/css" href="{{ asset('library/dataTable/datatables.min.css') }}"/>
 @endpush
 
 @extends('layout.main')
@@ -37,7 +37,7 @@
             <td>{{ $archive->title }}</td>
             <td>{{ $archive->category }}</td>
             <td>{{ $archive->field }}</td>
-            <td> {{ date('jS M Y', (int) $archive->created_at) }}</td>
+            <td> {{ date($archive->created_at) }}</td>
             <td>
               <a href="/dashboard/archives/{{ $archive->id }}" class="btn btn-info"><i class="bi bi-eye"></i> Lihat</a>
               <a href="/dashboard/archives/{{ $archive->id }}/edit" class="btn btn-warning"><i class="bi bi-pencil"></i> Ubah</a>
@@ -55,6 +55,6 @@
 @endsection
 
 @push('addon-script')
-  <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.4/datatables.min.js"></script>
+  <script type="text/javascript" src="{{ asset('library/dataTable/datatables.min.js') }}"></script>
   <script src="/script/dataTable.js"></script>
 @endpush

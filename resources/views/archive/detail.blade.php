@@ -44,7 +44,7 @@
 @if ($extension == 'pdf')
   @push('addon-script')
     {{-- PDF Object --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.7/pdfobject.min.js"></script>
+    <script src="{{ asset('library/pdfObject-2.2.7/pdfobject.min.js') }}"></script>
     <script>
       if (PDFObject.supportsPDFs) {
         PDFObject.embed("{{ asset('storage/'. $archive->document) }}", "#viewPDF", {height: "800px"});
