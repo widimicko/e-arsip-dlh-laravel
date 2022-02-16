@@ -123,7 +123,7 @@ class ArchiveController extends Controller
         }
 
         if($request->file('document')) {
-            Storage::delete($archive->image);
+            Storage::delete($archive->document);
             $validatedData['document'] = $request->file('document')->store('archives');
         }
 
