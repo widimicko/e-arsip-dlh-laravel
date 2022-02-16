@@ -10,23 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
-class ArchiveController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Display a listing of the resource by field name.
-     *
-     * @return \Illuminate\Http\Response
-     */
+class ArchiveController extends Controller {
     public function field(Field $field) {
         return view('archive.archives', [
             'archives' => Archive::getArchivesByField($field->name),
@@ -34,13 +18,7 @@ class ArchiveController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
+    public function create() {
         return view('archive.create', [
             'archives' => Archive::all(),
             'categories' => Category::all(),
@@ -48,14 +26,7 @@ class ArchiveController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         $validatedData = $request->validate([
             'title' => 'required|min:7|max:255',
             'document' => 'required',
@@ -70,32 +41,17 @@ class ArchiveController extends Controller
         $validatedData['document'] = $request->file('document')->store('archives');
 
         Archive::create($validatedData);
-
         return redirect('/')->with('success', "Arsip berhasil ditambahkan");
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Archive  $archive
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Archive $archive)
-    {
+    public function show(Archive $archive) {
         return view('archive.detail', [
             'archive' => $archive,
             'fields' => Field::all()
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Archive  $archive
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Archive $archive)
-    {
+    public function edit(Archive $archive) {
         return view('archive.edit', [
             'archive' => $archive,
             'categories' => Category::all(),
@@ -103,15 +59,7 @@ class ArchiveController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Archive  $archive
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Archive $archive)
-    {
+    public function update(Request $request, Archive $archive) {
         $validatedData = $request->validate([
             'title' => 'required|min:7|max:255',
             'category_id' => 'required',
@@ -128,18 +76,10 @@ class ArchiveController extends Controller
         }
 
         Archive::where('id', $archive->id)->update($validatedData);
-
         return redirect('/')->with('success', 'Dokumen berhasil diubah');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Archive  $archive
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Archive $archive)
-    {
+    public function destroy(Archive $archive) {
         if ($archive->document) {
             Storage::delete($archive->document);
         }
@@ -149,8 +89,7 @@ class ArchiveController extends Controller
         return redirect('/')->with('success', 'Arsip berhasil dihapus');
     }
 
-    public function download(Archive $archive)
-    {
+    public function download(Archive $archive) {
         if ($archive->document) {
             return Storage::download($archive->document);
         } else {

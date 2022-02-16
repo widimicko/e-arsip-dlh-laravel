@@ -7,16 +7,13 @@ use App\Models\Archive;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class FieldController extends Controller
-{
+class FieldController extends Controller {
 
-    public function index()
-    {
+    public function index() {
         return view('fields.fields', ['fields' => Field::all()]);
     }
 
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         $validatedData = $request->validate([
             'name' => 'required|unique:fields|min:5|max:255'
         ]);
@@ -25,8 +22,7 @@ class FieldController extends Controller
         return redirect('/dashboard/fields')->with('success', "Bidang berhasil ditambahkan");
     }
 
-    public function update(Request $request, Field $field)
-    {
+    public function update(Request $request, Field $field) {
         $validatedData = $request->validate([
             'name' => 'required|unique:fields|min:5|max:255',
         ]);
@@ -40,8 +36,7 @@ class FieldController extends Controller
         return redirect('/dashboard/fields')->with('success', 'Bidang berhasil diubah');
     }
 
-    public function destroy(Field $field)
-    {
+    public function destroy(Field $field) {
         $archives = Archive::where('category_id', $field->id)->get();
 
         if ($archives) {
