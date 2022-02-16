@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Aplikasi Arsip DLH Kota Madiun</title>
+    <title>Sistem Informasi Manajemen Pengarsipan Dinas Lingkungan Hidup Kota Madiun</title>
     {{-- Bootstrap --}}
     <link href="{{ asset('library/bootstrap-5.1.3/bootstrap.min.css') }}" rel="stylesheet">    
     {{-- Bootstrap Icon --}}

@@ -9,7 +9,7 @@
     <link href="{{ asset('library/bootstrap-5.1.3/bootstrap.min.css') }}" rel="stylesheet">
     {{-- Bootstrap Icon --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
-    <title>Aplikasi Arsip DLH Kota Madiun</title>
+    <title>Sistem Informasi Manajemen Pengarsipan Dinas Lingkungan Hidup Kota Madiun</title>
     <style>
       .bg-primary {
         color: white !important;
@@ -23,7 +23,7 @@
         <div class="col-lg-6 col-sm-12 my-auto mx-auto">
           <div class="d-flex justify-content-center">
             <div class="fs-3 text-center">
-              <p>Aplikasi Pengarsipan</p>
+              <p>Sistem Informasi Manajemen Pengarsipan</p>
               <img src="{{ asset('/image/logo_dlh.png') }}" alt="Logo" class="img-fluid" style="height: 400px; width: 400px;">
               <p>Dinas Lingkungan Hidup Kota Madiun</p>
             </div>
