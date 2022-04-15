@@ -129,8 +129,8 @@
               <label>Email</label>
             </div>
             <div class="mb-3">
-              <label id="role-label">Bidang</label>
-              <select name="role" class="form-select">
+              <label>Bidang</label>
+              <select name="role" id="input-edit-role" class="form-select">
                 @foreach ($fields as $field)
                   @if (old('role') == $field->name)
                     <option value="{{ $field->name }}" selected>{{ $field->name }}</option>
@@ -169,12 +169,12 @@
 
       const nameInput = editModal.querySelector('#input-edit-name')
       const emailInput = editModal.querySelector('#input-edit-email')
-      const roleLabel = editModal.querySelector('#role-label')
+      const roleInput = editModal.querySelector('#input-edit-role')
 
       document.getElementById('editForm').setAttribute('action', `${window.location.origin}/dashboard/users/${id}`)
       nameInput.value = name
       emailInput.value = email
-      roleLabel.innerHTML = `Bidang (Sebelumnya: <strong>${role}</strong>)`
+      roleInput.value = role
     })
   </script>
 @endpush
