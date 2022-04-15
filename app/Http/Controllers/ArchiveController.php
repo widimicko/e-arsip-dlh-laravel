@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Storage;
 class ArchiveController extends Controller {
     public function field(Field $field) {
         return view('archive.archives', [
-            'archives' => Archive::getArchivesByField($field->name),
+            'archives' => Archive::with('field', 'category')->whereBelongsTo($field)->get(),
             'fields' => Field::all()
         ]);
     }

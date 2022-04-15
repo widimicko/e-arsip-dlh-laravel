@@ -5,9 +5,8 @@
 @extends('layout.main')
 
 @section('main')
-
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Halo, {{ Auth::user()->name }}</h1>
+    <h1 class="h2">Halaman Data Arsip</h1>
   </div>
 
   @if ($notification = Session::get('success'))
@@ -35,8 +34,8 @@
           <tr>
             <td>{{ $loop->iteration }}</td>
             <td>{{ $archive->title }}</td>
-            <td>{{ $archive->category }}</td>
-            <td>{{ $archive->field }}</td>
+            <td>{{ $archive->category->name }}</td>
+            <td>{{ $archive->field->name }}</td>
             <td> {{ date($archive->created_at) }} ({{  \Carbon\Carbon::parse($archive->updated_at)->diffForHumans() }})</td>
             <td>
               <a href="/dashboard/archives/{{ $archive->id }}" class="btn btn-info text-white"><i class="bi bi-eye"></i> Lihat</a>

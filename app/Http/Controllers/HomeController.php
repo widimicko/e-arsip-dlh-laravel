@@ -13,12 +13,13 @@ class HomeController extends Controller
         if(Auth::check()) {
             if (Auth::user()->role == 'admin') {
                 return view('archive.archives', [
-                    'archives' => Archive::getAllArchives(),
+                    'archives' => Archive::with('field', 'category')->get(),
                     'fields' => Field::all()
                 ]);
-            } else {  
+            } else {
+                $field = Field::where('name', Auth::user()->role)->get()->first();
                 return view('archive.archives', [
-                    'archives' => Archive::getArchivesByField(Auth::user()->role)
+                    'archives' => Archive::with('field', 'category')->whereBelongsTo($field)->get()
                 ]);
             }
         } else {
