@@ -97,6 +97,7 @@
                     <option value="{{ $field->name }}">{{ $field->name }}</option>
                   @endif
                 @endforeach
+                <option value="admin">Admin</option>
               </select>
             </div>
           </div>
@@ -138,6 +139,7 @@
                     <option value="{{ $field->name }}">{{ $field->name }}</option>
                   @endif
                 @endforeach
+                  <option value="admin">Admin</option>
               </select>
             </div>
           </div>

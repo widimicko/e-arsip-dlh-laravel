@@ -19,6 +19,7 @@ class CreateArchivesTable extends Migration
             $table->string('document');
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('field_id')->constrained('fields')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Storage;
 class ArchiveController extends Controller {
     public function field(Field $field) {
         return view('archive.archives', [
-            'archives' => Archive::with('field', 'category')->whereBelongsTo($field)->get(),
+            'archives' => Archive::with('field', 'category', 'user')->whereBelongsTo($field)->get(),
             'fields' => Field::all()
         ]);
     }
@@ -38,6 +38,7 @@ class ArchiveController extends Controller {
         }
 
         $validatedData['document'] = $request->file('document')->store('archives');
+        $validatedData['user_id'] = Auth::id();
 
         Archive::create($validatedData);
         return redirect('/')->with('success', "Arsip berhasil ditambahkan");

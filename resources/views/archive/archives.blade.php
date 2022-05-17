@@ -23,6 +23,7 @@
         <tr>
           <th scope="col">#</th>
           <th scope="col">Judul</th>
+          <th scope="col">Diupload oleh</th>
           <th scope="col">Kategori</th>
           <th scope="col">Bidang</th>
           <th scope="col">Ditambahkan Pada</th>
@@ -34,6 +35,7 @@
           <tr>
             <td>{{ $loop->iteration }}</td>
             <td>{{ $archive->title }}</td>
+            <td>{{ $archive->user->name }}</td>
             <td>{{ $archive->category->name }}</td>
             <td>{{ $archive->field->name }}</td>
             <td> {{ date($archive->created_at) }} ({{  \Carbon\Carbon::parse($archive->updated_at)->diffForHumans() }})</td>

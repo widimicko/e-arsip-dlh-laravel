@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use App\Models\Field;
 use App\Models\Category;
 use Illuminate\Support\Facades\DB;
@@ -20,5 +21,9 @@ class Archive extends Model
 
     public function field() {
         return $this->belongsTo(Field::class);
+    }
+
+    public function user() {
+        return $this->belongsTo(User::class);
     }
 }
