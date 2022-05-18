@@ -15,19 +15,19 @@ class FieldSeeder extends Seeder
     public function run()
     {
         Field::create([
-            'name' => 'A'
+            'name' => 'Penataan, Pengawasan dan Peningkatan Kapasitas Lingkungan Hidup'
         ]);
 
         Field::create([
-            'name' => 'B'
+            'name' => 'Pengendalian Pencemaran dan Kerusakan Lingkungan Hidup'
         ]);
         
         Field::create([
-            'name' => 'C'
+            'name' => 'Pengelolaan Sampah dan Limbah Bahan Berbahaya dan Beracun'
         ]);
 
         Field::create([
-            'name' => 'D'
+            'name' => 'Sekretariat'
         ]);
     }
 }
